@@ -5,7 +5,7 @@ int is_little_endian() {
 	val = 0x00000101;
 	unsigned char *pval;
 	pval = (unsigned char *) &val;
-	return pval[3] == 1;
+	return pval[0] == 1;
 }
 
 int main(void) {
