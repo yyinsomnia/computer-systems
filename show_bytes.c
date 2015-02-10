@@ -1,5 +1,5 @@
 /*
- MacBook Pro
+ MacBook Pro and Dell Ubuntu
  21
  21 43
  21 43 65
@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-typedef unsigned char *byte_pointer;
+typedef unsigned char *byte_pointer; //why use unsigned? know more about the func printf
 
 void show_bytes(byte_pointer start, int len) {
 	int i;
