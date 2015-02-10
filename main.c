@@ -2,9 +2,15 @@
 
 unsigned replace_byte(unsigned x, unsigned char b, int i);
 
+int is_all_one(int x);
+int is_all_zero(int x);
+int is_msb_one(int x);
+int is_msb_zero(int x);
+
+int int_shifts_are_logical();
+
 int main(void)
 {
-	int r = replace_byte(0x12345678, 0xAB, 2);
-	printf("%X", r);
+	printf("%d", int_shifts_are_logical());
 	printf("\n");
 }
