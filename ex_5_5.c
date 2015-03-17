@@ -30,6 +30,6 @@ double ploy(double a[], double x, int degree)
 		item_new = a[i] * xpwr;
 		xpwr = xpwr * x;
 	}
-	result += item[degree];
+	result += item_new;
 	return result;
 }
