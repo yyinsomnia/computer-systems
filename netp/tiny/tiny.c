@@ -190,8 +190,12 @@ void server_dynamic(int fd, char *filename, char *cgiargs, char *method)
 		/* Real server would set all CGI vars here */
 		setenv("QUERY_STRING", cgiargs, 1);
 		setenv("REQUEST_METHOD", method, 1);
+		/* it's need to change, because of the cgi can out put the header.. */
 		if (strcasecmp(method, "HEAD")) //HEAD don't need to stdout
 			Dup2(fd, STDOUT_FILENO);		 /* Redirect stdout to client */
+		if (!strcasecmp(method, "POST")) {
+			Dup2(fd, STDIN_FILENO);
+		}
 		Execve(filename, emptylist, environ); /* Run CGI program */
 	}
 	Wait(NULL); /* Parent waits for and reaps child */
