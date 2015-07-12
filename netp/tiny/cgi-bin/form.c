@@ -13,12 +13,12 @@ int main()
     /* Read request body */
     method = getenv("REQUEST_METHOD");
     if (!strcasecmp(method, "POST")) {
-        while ((c = getchar()) != EOF && i < MAXBUF) { //when request method is get, this line will cause problem, e when post it also cause problem..
-            content[i++] = c;
-        }
+        // while ((c = getchar()) != EOF && i < MAXBUF - 1) { //when request method is get, this line will cause problem, e when post it also cause problem..
+        //     content[i++] = c;
+        // }
     }
 
-    /* Extract the three arguments */
+    /* Extract the three argments */
 
 
     /* Make the response body */
@@ -27,9 +27,9 @@ int main()
     /* Generate the HTTP response */
     printf("Content-length: %d\r\n", i);
     printf("Content-type: text/html\r\n\r\n");
-    if (i) {
-        printf("%s", content);
-    }
+    sprintf(content, "Welcome to add.com: ");
+    printf("%s", content);
+    
     fflush(stdout);
     exit(0);
 }

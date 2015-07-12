@@ -179,6 +179,8 @@ void get_filetype(char *filename, char *filetype)
 void server_dynamic(int fd, char *filename, char *cgiargs, char *method)
 {
 	char buf[MAXLINE], *emptylist[] = {NULL};
+	int numchars = 1;
+	int content_length = -1;
 
 	/* Return first part of HTTP response */
 	sprintf(buf, "HTTP/1.0 200 OK\r\n");
@@ -191,9 +193,10 @@ void server_dynamic(int fd, char *filename, char *cgiargs, char *method)
 		setenv("QUERY_STRING", cgiargs, 1);
 		setenv("REQUEST_METHOD", method, 1);
 		/* it's need to change, because of the cgi can out put the header.. */
-		if (strcasecmp(method, "HEAD")) //HEAD don't need to stdout
+		if (strcasecmp(method, "HEAD") != 0) //HEAD don't need to stdout
 			Dup2(fd, STDOUT_FILENO);		 /* Redirect stdout to client */
-		if (!strcasecmp(method, "POST")) {
+		if (strcasecmp(method, "POST") == 0) {
+
 			Dup2(fd, STDIN_FILENO);
 		}
 		Execve(filename, emptylist, environ); /* Run CGI program */
