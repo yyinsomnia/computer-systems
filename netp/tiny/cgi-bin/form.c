@@ -5,19 +5,18 @@
 
 int main()
 {
-    char *buf, *p, *method;
-    char arg1[MAXLINE], arg2[MAXLINE], arg3[MAXLINE], content[MAXBUF], c;
+    char *p, *method, content[8192];
     int n1 = 0, n2 = 0, n3 = 0, i = 0;
-    rio_t rio;
+
 
     /* Read request body */
     method = getenv("REQUEST_METHOD");
     if (!strcasecmp(method, "POST")) {
-        // while ((c = getchar()) != EOF && i < MAXBUF - 1) { //when request method is get, this line will cause problem, e when post it also cause problem..
-        //     content[i++] = c;
-        // }
+        //Rio_readlineb(stdin, content, );
     }
 
+    //while ((content[i++] = getchar()) != EOF && i < 8192) {} 
+    //content[0] = getchar();
     /* Extract the three argments */
 
 
@@ -25,11 +24,10 @@ int main()
 
 
     /* Generate the HTTP response */
-    printf("Content-length: %d\r\n", i);
-    printf("Content-type: text/html\r\n\r\n");
-    sprintf(content, "Welcome to add.com: ");
-    printf("%s", content);
+    // printf("Content-length: %d\r\n", (int) strlen(content));
+    // printf("Content-type: text/html\r\n\r\n");
+    //printf("%s", content);
     
-    fflush(stdout);
+    //fflush(stdout);
     exit(0);
 }
